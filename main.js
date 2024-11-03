@@ -1,5 +1,5 @@
 let main = document.querySelector("#main");
-let date = new Date();
+let actualTime = new Date();
 
 // si el navegador soporta geolocalizacion
 if (navigator.geolocation) {
@@ -15,14 +15,15 @@ if (navigator.geolocation) {
             .then(data => {
                 const countryCode = data.sys.country;
 
-                const sunriseUnix = data.sys.sunrise;
-                const sunriseDate = new Date(sunriseUnix * 1000);
+                const sunriseUnixTime = data.sys.sunrise;
+                const sunriseTime = new Date(sunriseUnixTime * 1000);
 
 
                 main.innerHTML = `<h3>Pais: ${countryCode} </h3>
-                                  <h3>Amanecer: ${sunriseDate}</h3>
-                                  <h3>Hora: ${date}</h3>`;
-                let estado = getState(sunriseDate, date);
+                                  <h3>Amanecer: ${sunriseTime}</h3>
+                                  <h3>Hora: ${sunriseTime}</h3>`;
+
+                let estado = getState(sunriseTime, actualTime);
                 
                 main.innerHTML += `<h3>${estado}</h3>`
 
@@ -35,11 +36,13 @@ if (navigator.geolocation) {
     main.innerHTML = `<h1>El navegador no soporta geolocalizacion</h1>`
 }
 
-function getState(sunriseTime, localTime) {
+function getState(sunriseTime, actualTime) {
     let state = 1
 
-    while (sunriseTime < localTime) {
-        console.log(sunriseTime);
+    // suma 24 minutos desde el amanecer hasta que encuentra una hora actual que sea mayor
+    // cuando encuentra, corta el loop y devuelve el estado
+    while (sunriseTime < actualTime) {
+        //console.log(sunriseTime);
         sunriseTime.setMinutes(sunriseTime.getMinutes() + 24);
         if (state == 6) {
             state = 1;
