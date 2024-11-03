@@ -21,7 +21,7 @@ if (navigator.geolocation) {
 
                 main.innerHTML = `<h3>Pais: ${countryCode} </h3>
                                   <h3>Amanecer: ${sunriseTime}</h3>
-                                  <h3>Hora: ${sunriseTime}</h3>`;
+                                  <h3>Hora: ${actualTime}</h3>`;
 
                 let estado = getState(sunriseTime, actualTime);
                 
