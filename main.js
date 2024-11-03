@@ -36,6 +36,7 @@ if (navigator.geolocation) {
     main.innerHTML = `<h1>El navegador no soporta geolocalizacion</h1>`
 }
 
+
 function getState(sunriseTime, actualTime) {
     let state = 0
 
@@ -52,5 +53,4 @@ function getState(sunriseTime, actualTime) {
     }
 
     return state;
-
 }
