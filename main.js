@@ -25,7 +25,7 @@ if (navigator.geolocation) {
 
                 let estado = getState(sunriseTime, actualTime);
                 
-                main.innerHTML += `<h3>${estado}</h3>`
+                main.innerHTML += `<h3>Estado: ${estado}</h3>`
 
             })
             .catch(error => {
@@ -51,6 +51,6 @@ function getState(sunriseTime, actualTime) {
         state += 1
     }
 
-    return "Estado " + state;
+    return state;
 
 }
