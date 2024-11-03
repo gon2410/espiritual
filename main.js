@@ -28,7 +28,7 @@ if (navigator.geolocation) {
                                   <h3>Amanecer: ${sunriseHours + ":" + sunriseMinutes}</h3>
                                   <h3>Hora: ${localTimeString}</h3>`;
 
-                console.log(getState(sunriseHours, sunriseMinutes, localTimeInt));
+                //console.log(getState(sunriseHours, sunriseMinutes, localTimeInt));
             })
             .catch(error => {
                 main.innerHTML = `<h1>Error: ${error.message}</h1>`
