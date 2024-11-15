@@ -38,19 +38,17 @@ if (navigator.geolocation) {
 
 
 function getState(sunriseTime, actualTime) {
-    let state = 1
-
+    let state = 0
     // suma 24 minutos desde el amanecer hasta que encuentra una hora actual que sea mayor
     // cuando encuentra, corta el loop y devuelve el estado
     while (sunriseTime < actualTime) {
-        //console.log(sunriseTime);
-        sunriseTime.setMinutes(sunriseTime.getMinutes() + 24);
-        if (state == 6) {
-            state = 1;
-        }
-
+        console.log(sunriseTime);
         state += 1
+        if (state == 6) {
+            state = 1
+        }
+        sunriseTime.setMinutes(sunriseTime.getMinutes() + 24);
     }
 
-    return state - 1;
+    return state;
 }
