@@ -1,4 +1,7 @@
-let main = document.querySelector("#main");
+const countryDiv = document.querySelector("#country");
+const sunriseDiv = document.querySelector("#sunrise");
+const actualTimeDiv = document.querySelector("#actualTime");
+const stateDiv = document.querySelector("#state")
 let actualTime = new Date();
 
 // si el navegador soporta geolocalizacion
@@ -18,22 +21,21 @@ if (navigator.geolocation) {
                 const sunriseUnixTime = data.sys.sunrise;
                 const sunriseTime = new Date(sunriseUnixTime * 1000);
 
+                countryDiv.innerHTML += countryCode;
+                sunriseDiv.innerHTML += sunriseTime;
+                actualTimeDiv.innerHTML += actualTime;
 
-                main.innerHTML = `<h3>Pais: ${countryCode} </h3>
-                                  <h3>Amanecer: ${sunriseTime}</h3>
-                                  <h3>Hora: ${actualTime}</h3>`;
-
-                let estado = getState(sunriseTime, actualTime);
+                const state = getState(sunriseTime, actualTime);
                 
-                main.innerHTML += `<h3>Estado: ${estado}</h3>`
-
+                stateDiv.innerHTML += state;
+               
             })
             .catch(error => {
-                main.innerHTML = `<h1>Error: ${error.message}</h1>`
+                console.log(error.message);
             });
     });
 } else {
-    main.innerHTML = `<h1>El navegador no soporta geolocalizacion</h1>`
+    console.log("El navegador no soporta geolocalizacion.")
 }
 
 
